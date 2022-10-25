@@ -24,6 +24,7 @@ public class Property {
 
     // Data fields
     private final Address address;
+    private final Price price;
     private final Set<Tag> tags = new HashSet<>();
     private Path imageDirectoryPath;
     private PropertyStatusEnum propertyStatusEnum;
@@ -31,10 +32,11 @@ public class Property {
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name, Address address, Set<Tag> tags, PropertyStatusEnum propertyStatusEnum) {
-        requireAllNonNull(name, address, tags, propertyStatusEnum);
+    public Property(Name name, Address address, Price price, Set<Tag> tags) {
+        requireAllNonNull(name, address, price, tags, propertyStatusEnum);
         this.name = name;
         this.address = address;
+        this.price = price;
         this.tags.addAll(tags);
         this.propertyStatusEnum = propertyStatusEnum;
     }
@@ -45,6 +47,10 @@ public class Property {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Price getPrice() {
+        return price;
     }
 
     public Path getImagePath() {
@@ -134,6 +140,7 @@ public class Property {
         Property otherProperty = (Property) other;
         return otherProperty.getName().equals(getName())
             && otherProperty.getAddress().equals(getAddress())
+            && otherProperty.getPrice().equals(getPrice())
             && otherProperty.getTags().equals(getTags());
     }
 
@@ -142,7 +149,7 @@ public class Property {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags);
+        return Objects.hash(name, address, price, tags);
     }
 
     @Override
@@ -150,7 +157,9 @@ public class Property {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
             .append("; Address: ")
-            .append(getAddress());
+            .append(getAddress())
+            .append("; Price: ")
+            .append(getPrice());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -161,5 +170,6 @@ public class Property {
         builder.append(" ; Status: ").append(this.propertyStatusEnum);
         return builder.toString();
     }
+
 }
 

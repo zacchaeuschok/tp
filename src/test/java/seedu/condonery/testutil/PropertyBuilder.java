@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.Tag;
@@ -18,9 +19,11 @@ public class PropertyBuilder {
     public static final String DEFAULT_NAME = "Bishan";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final PropertyStatusEnum DEFAULT_PROPERTY_STATUS = PropertyStatusEnum.AVAILABLE;
+    public static final String DEFAULT_PRICE = "100000";
 
     private Name name;
     private Address address;
+    private Price price;
     private Set<Tag> tags;
     private PropertyStatusEnum propertyStatusEnum;
 
@@ -30,6 +33,7 @@ public class PropertyBuilder {
     public PropertyBuilder() {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
+        price = new Price(DEFAULT_PRICE);
         tags = new HashSet<>();
         propertyStatusEnum = DEFAULT_PROPERTY_STATUS;
     }
@@ -40,6 +44,7 @@ public class PropertyBuilder {
     public PropertyBuilder(Property propertyToCopy) {
         name = propertyToCopy.getName();
         address = propertyToCopy.getAddress();
+        price = propertyToCopy.getPrice();
         tags = new HashSet<>(propertyToCopy.getTags());
         propertyStatusEnum = propertyToCopy.getPropertyStatusEnum();
     }
@@ -73,11 +78,17 @@ public class PropertyBuilder {
      */
     public PropertyBuilder withPropertyStatus(String propertyStatus) {
         this.propertyStatusEnum = PropertyStatusEnum.valueOf(propertyStatus);
+    }
+    
+     * Sets the {@code Price} of the {@code Property} that we are building.
+     */
+    public PropertyBuilder withPrice(String price) {
+        this.price = new Price(price);
         return this;
     }
 
     public Property build() {
-        return new Property(name, address, tags, propertyStatusEnum);
+        return new Property(name, address, price, tags, propertyStatusEnum);
     }
 
 }

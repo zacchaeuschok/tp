@@ -3,6 +3,7 @@
     {
       "name": "Alice Pauline",
       "address": "123, Jurong West Ave 6, #08-111",
+      "price": "100000",
       "tagged": [
         "friends"
       ],
@@ -13,7 +14,7 @@
       "name": "Alice Pauline",
       "address": "4th street",
       "propertyStatus": "AVAILABLE"
-
+      "price": "100000"
     }
   ]
 }

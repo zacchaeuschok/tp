@@ -4,6 +4,7 @@ import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -36,7 +37,7 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
     @Override
     public EditPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PROPERTY_STATUS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG, PREFIX_PROPERTY_STATUS);
         EditPropertyDescriptor editPropertyDescriptor =
                 new EditPropertyDescriptor();
         Index index;
@@ -49,7 +50,8 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         }
 
         if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
-            && argMultimap.getAllValues(PREFIX_TAG).size() == 0 && !argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()) {
+            && !argMultimap.getValue(PREFIX_PRICE).isPresent()
+            && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
             throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
         }
 
@@ -59,13 +61,15 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPropertyDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-
         if (argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()) {
             try{
                 editPropertyDescriptor.setPropertyStatusEnum(ParserUtil.parsePropertyStatus(argMultimap.getValue(PREFIX_PROPERTY_STATUS).get()));
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException(Messages.MESSAGE_INVALID_STATUS);
             }
+        }
+        if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            editPropertyDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPropertyDescriptor::setTags);
 

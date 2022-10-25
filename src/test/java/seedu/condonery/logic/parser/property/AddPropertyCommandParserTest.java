@@ -26,8 +26,11 @@ import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PRICE_DESC_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.condonery.testutil.TypicalProperties.SCOTTS;
@@ -72,7 +75,7 @@ public class AddPropertyCommandParserTest {
         // zero tags
         Property expectedProperty = new PropertyBuilder(SCOTTS).withTags().build();
         assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_ADDRESS_DESC_SCOTTS,
-            new AddPropertyCommand(expectedProperty));
+        new AddPropertyCommand(expectedProperty));
     }
 
     @Test
@@ -80,39 +83,43 @@ public class AddPropertyCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, CLIENT_VALID_NAME_BOB + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, CLIENT_VALID_NAME_BOB + ADDRESS_DESC_BOB + PRICE_DESC_BOB,
             expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + CLIENT_VALID_ADDRESS_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + CLIENT_VALID_ADDRESS_BOB + PRICE_DESC_BOB,
             expectedMessage);
 
+        // missing price prefix
+        assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + VALID_PRICE_BOB,
+                expectedMessage);
+
         // all prefixes missing
-        assertParseFailure(parser, CLIENT_VALID_NAME_BOB + CLIENT_VALID_ADDRESS_BOB,
+        assertParseFailure(parser, CLIENT_VALID_NAME_BOB + CLIENT_VALID_ADDRESS_BOB + VALID_PRICE_BOB,
             expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + ADDRESS_DESC_BOB
+        assertParseFailure(parser, INVALID_NAME_DESC + ADDRESS_DESC_BOB + PRICE_DESC_BOB
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_ADDRESS_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_ADDRESS_DESC + PRICE_DESC_BOB
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + PRICE_DESC_BOB
             + INVALID_TAG_DESC + CLIENT_VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC + PRICE_DESC_BOB,
             Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + PRICE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE));
     }
 }
