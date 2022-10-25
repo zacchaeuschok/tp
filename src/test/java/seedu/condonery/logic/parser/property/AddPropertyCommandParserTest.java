@@ -14,15 +14,26 @@ import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.condonery.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.condonery.testutil.TypicalProperties.AMY;
-import static seedu.condonery.testutil.TypicalProperties.BOB;
+import static seedu.condonery.testutil.TypicalProperties.SCOTTS;
+import static seedu.condonery.testutil.TypicalProperties.WHISTLER;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
@@ -35,32 +46,32 @@ public class AddPropertyCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Property expectedProperty = new PropertyBuilder(BOB).withTags(CLIENT_VALID_TAG_FRIEND).build();
+        Property expectedProperty = new PropertyBuilder(WHISTLER).withTags(PROPERTY_VALID_TAG).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
-            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddPropertyCommand(expectedProperty));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROPERTY_NAME_DESC_WHISTLER
+            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER, new AddPropertyCommand(expectedProperty));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB
-            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddPropertyCommand(expectedProperty));
+        assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_NAME_DESC_WHISTLER
+            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER, new AddPropertyCommand(expectedProperty));
 
         // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_AMY
-            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddPropertyCommand(expectedProperty));
+        assertParseSuccess(parser, PROPERTY_NAME_DESC_WHISTLER + PROPERTY_ADDRESS_DESC_SCOTTS
+            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER, new AddPropertyCommand(expectedProperty));
 
         // multiple tags - all accepted
         Property expectedPersonMultipleTags =
-                new PropertyBuilder(BOB).withTags(CLIENT_VALID_TAG_FRIEND, CLIENT_VALID_TAG_HUSBAND).build();
-        assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB
-            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddPropertyCommand(expectedPersonMultipleTags));
+                new PropertyBuilder(SCOTTS).withTags(PROPERTY_VALID_TAG_SCOTTS, PROPERTY_VALID_TAG).build();
+        assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_ADDRESS_DESC_SCOTTS
+            + PROPERTY_TAGS_DESC_SCOTTS + PROPERTY_TAGS_DESC_WHISTLER, new AddPropertyCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Property expectedProperty = new PropertyBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + ADDRESS_DESC_AMY,
+        Property expectedProperty = new PropertyBuilder(SCOTTS).withTags().build();
+        assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_ADDRESS_DESC_SCOTTS,
             new AddPropertyCommand(expectedProperty));
     }
 

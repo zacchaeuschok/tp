@@ -11,6 +11,7 @@ import seedu.condonery.commons.util.StringUtil;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -88,5 +89,10 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static PropertyStatusEnum parsePropertyStatus(String propertyStatus) throws ParseException {
+        requireNonNull(propertyStatus);
+        return PropertyStatusEnum.valueOf(propertyStatus);
     }
 }

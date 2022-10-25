@@ -93,53 +93,53 @@ public class EditPropertyCommandTest {
     public void execute_filteredList_success() {
         CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST);
 
-        Property personInFilteredList = model.getFilteredPropertyList().get(INDEX_FIRST.getZeroBased());
-        Property editedPerson = new PropertyBuilder(personInFilteredList)
-                .withName(CommandTestUtil.CLIENT_VALID_NAME_BOB).build();
+        Property propertyInFilteredList = model.getFilteredPropertyList().get(INDEX_FIRST.getZeroBased());
+        Property editedProperty = new PropertyBuilder(propertyInFilteredList)
+                .withName(CommandTestUtil.PROPERTY_VALID_NAME_SCOTTS).build();
         EditPropertyCommand editCommand = new EditPropertyCommand(INDEX_FIRST,
-            new EditPropertyDescriptorBuilder().withName(CommandTestUtil.CLIENT_VALID_NAME_BOB).build());
+            new EditPropertyDescriptorBuilder().withName(CommandTestUtil.PROPERTY_VALID_NAME_SCOTTS).build());
 
-        String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty);
 
         Model expectedModel = new ModelManager(
             new PropertyDirectory(model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
             new ClientDirectory(model.getClientDirectory()), new UserPrefs()
         );
-        expectedModel.setProperty(model.getFilteredPropertyList().get(0), editedPerson);
+        expectedModel.setProperty(model.getFilteredPropertyList().get(0), editedProperty);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Property firstPerson = model.getFilteredPropertyList().get(INDEX_FIRST.getZeroBased());
-        EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(firstPerson).build();
-        EditPropertyCommand editCommand = new EditPropertyCommand(INDEX_SECOND, descriptor);
+    public void execute_duplicatePropertyUnfilteredList_failure() {
+        Property firstProperty = model.getFilteredPropertyList().get(INDEX_FIRST.getZeroBased());
+        EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(firstProperty).build();
+        EditPropertyCommand editPropertyCommand = new EditPropertyCommand(INDEX_SECOND, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
+        CommandTestUtil.assertCommandFailure(editPropertyCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicatePropertyFilteredList_failure() {
         CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST);
 
         // edit person in filtered list into a duplicate in address book
         Property propertyInList = model.getPropertyDirectory().getPropertyList()
                 .get(INDEX_SECOND.getZeroBased());
-        EditPropertyCommand editCommand = new EditPropertyCommand(INDEX_FIRST,
+        EditPropertyCommand editPropertyCommand = new EditPropertyCommand(INDEX_FIRST,
             new EditPropertyDescriptorBuilder(propertyInList).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
+        CommandTestUtil.assertCommandFailure(editPropertyCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidPropertyIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPropertyList().size() + 1);
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder()
                 .withName(CommandTestUtil.CLIENT_VALID_NAME_BOB).build();
-        EditPropertyCommand editCommand = new EditPropertyCommand(outOfBoundIndex, descriptor);
+        EditPropertyCommand editPropertyCommand = new EditPropertyCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editPropertyCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
     }
 
     /**
@@ -147,16 +147,16 @@ public class EditPropertyCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidPropertyIndexFilteredList_failure() {
         CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getPropertyDirectory().getPropertyList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getPropertyDirectory().getPropertyList().size()  + 1);
 
-        EditPropertyCommand editCommand = new EditPropertyCommand(outOfBoundIndex,
+        EditPropertyCommand editPropertyCommand = new EditPropertyCommand(outOfBoundIndex,
             new EditPropertyDescriptorBuilder().withName(CommandTestUtil.CLIENT_VALID_NAME_BOB).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editPropertyCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
     }
 
     @Test

@@ -6,7 +6,8 @@
       "address": "123, Jurong West Ave 6, #08-111",
       "tagged": [
         "friends"
-      ]
+      ],
+      "propertyStatus": "AVAILABLE"
     },
     {
       "name": "Oasis",
@@ -14,34 +15,45 @@
       "tagged": [
         "owesMoney",
         "friends"
-      ]
+      ],
+      "propertyStatus": "SOLD"
     },
     {
       "name": "Carl Kurz",
       "address": "wall street",
-      "tagged": []
+      "tagged": [],
+      "propertyStatus": "SOLD"
+
     },
     {
       "name": "Daniel Meier",
       "address": "10th street",
       "tagged": [
         "friends"
-      ]
+      ],
+      "propertyStatus": "SOLD"
+
     },
     {
       "name": "Elle Meyer",
       "address": "michegan ave",
-      "tagged": []
+      "tagged": [],
+      "propertyStatus": "SOLD"
+
     },
     {
       "name": "Fiona Kunz",
       "address": "little tokyo",
-      "tagged": []
+      "tagged": [],
+      "propertyStatus": "SOLD"
+
     },
     {
       "name": "George Best",
       "address": "4th street",
-      "tagged": []
+      "tagged": [],
+      "propertyStatus": "SOLD"
+
     }
   ]
 }

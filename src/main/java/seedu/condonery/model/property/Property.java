@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -25,15 +26,17 @@ public class Property {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private Path imageDirectoryPath;
+    private PropertyStatusEnum propertyStatusEnum;
 
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, address, tags);
+    public Property(Name name, Address address, Set<Tag> tags, PropertyStatusEnum propertyStatusEnum) {
+        requireAllNonNull(name, address, tags, propertyStatusEnum);
         this.name = name;
         this.address = address;
         this.tags.addAll(tags);
+        this.propertyStatusEnum = propertyStatusEnum;
     }
 
     public Name getName() {
@@ -67,6 +70,10 @@ public class Property {
         HashSet<String> stringTags = new HashSet<>(tags.size());
         tags.forEach(tag -> stringTags.add(tag.tagName));
         return Collections.unmodifiableSet(stringTags);
+    }
+
+    public PropertyStatusEnum getPropertyStatusEnum() {
+        return propertyStatusEnum;
     }
 
     /**
@@ -130,6 +137,8 @@ public class Property {
             && otherProperty.getTags().equals(getTags());
     }
 
+
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -148,6 +157,8 @@ public class Property {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append(" ; Status: ").append(this.propertyStatusEnum);
         return builder.toString();
     }
 }

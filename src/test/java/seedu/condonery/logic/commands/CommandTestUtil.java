@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.testutil.Assert.assertThrows;
 
@@ -45,7 +46,18 @@ public class CommandTestUtil {
     public static final String PROPERTY_VALID_ADDRESS_SCOTTS = "8 Scotts Rd, Singapore 228238";
     public static final String PROPERTY_VALID_ADDRESS_WHISTLER = "105 W Coast Vale, Singapore 126757";
     public static final String PROPERTY_VALID_TAG_SCOTTS = "City";
-    public static final String PROPERTY_VALID_TAG_WHISTLER = "High-End";
+    public static final String PROPERTY_VALID_TAG = "High-End";
+    public static final String PROPERTY_VALID_STATUS = "AVAILABLE";
+
+    public static final String PROPERTY_NAME_DESC_SCOTTS = " " + PREFIX_NAME + PROPERTY_VALID_NAME_SCOTTS;
+    public static final String PROPERTY_ADDRESS_DESC_SCOTTS = " " + PREFIX_ADDRESS + PROPERTY_VALID_ADDRESS_SCOTTS;
+    public static final String PROPERTY_TAGS_DESC_SCOTTS = " " + PREFIX_TAG + PROPERTY_VALID_TAG_SCOTTS;
+    public static final String PROPERTY_STATUS_DESC_SCOTTS = " " + PREFIX_PROPERTY_STATUS + PROPERTY_VALID_STATUS;
+
+    public static final String PROPERTY_NAME_DESC_WHISTLER = " " + PREFIX_NAME + PROPERTY_VALID_NAME_WHISTLER;
+    public static final String PROPERTY_ADDRESS_DESC_WHISTLER = " " + PREFIX_ADDRESS + PROPERTY_VALID_ADDRESS_WHISTLER;
+    public static final String PROPERTY_TAGS_DESC_WHISTLER = " " + PREFIX_TAG + PROPERTY_VALID_TAG;
+    public static final String PROPERTY_STATUS_DESC_WHISTLER = " " + PREFIX_PROPERTY_STATUS + PROPERTY_VALID_STATUS;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + CLIENT_VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + CLIENT_VALID_NAME_BOB;
@@ -55,6 +67,7 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + CLIENT_VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + CLIENT_VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + CLIENT_VALID_TAG_HUSBAND;
+    public static final String STATUS_DESC_AMY = " " + PREFIX_PROPERTY_STATUS + PROPERTY_VALID_TAG;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
@@ -80,7 +93,7 @@ public class CommandTestUtil {
                 .withTags(PROPERTY_VALID_TAG_SCOTTS).build();
         PROPERTY_DESC_WHISTLER = new EditPropertyDescriptorBuilder().withName(PROPERTY_VALID_NAME_WHISTLER)
                 .withAddress(PROPERTY_VALID_ADDRESS_WHISTLER)
-                .withTags(PROPERTY_VALID_TAG_WHISTLER).build();
+                .withTags(PROPERTY_VALID_TAG).build();
     }
 
     /**

@@ -22,6 +22,7 @@ import seedu.condonery.model.Model;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -95,8 +96,9 @@ public class EditPropertyCommand extends Command {
         Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
         Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
-
-        return new Property(updatedName, updatedAddress, updatedTags);
+        PropertyStatusEnum propertyStatusEnum = editPropertyDescriptor
+                .getPropertyStatusEnum().orElse(propertyToEdit.getPropertyStatusEnum());
+        return new Property(updatedName, updatedAddress, updatedTags, propertyStatusEnum);
     }
 
     @Override
@@ -128,6 +130,7 @@ public class EditPropertyCommand extends Command {
         private Name name;
         private Address address;
         private Set<Tag> tags;
+        private PropertyStatusEnum propertyStatusEnum;
 
         public EditPropertyDescriptor() {}
 
@@ -139,6 +142,7 @@ public class EditPropertyCommand extends Command {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setPropertyStatusEnum(toCopy.propertyStatusEnum);
         }
 
         /**
@@ -162,6 +166,14 @@ public class EditPropertyCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setPropertyStatusEnum(PropertyStatusEnum propertyStatusEnum) {
+            this.propertyStatusEnum = propertyStatusEnum;
+        }
+
+        public Optional<PropertyStatusEnum> getPropertyStatusEnum() {
+            return Optional.ofNullable(propertyStatusEnum);
         }
 
         /**

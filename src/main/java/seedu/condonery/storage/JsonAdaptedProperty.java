@@ -13,6 +13,7 @@ import seedu.condonery.commons.exceptions.IllegalValueException;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -25,18 +26,20 @@ class JsonAdaptedProperty {
     private final String name;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String propertyStatus;
 
     /**
      * Constructs a {@code JsonAdaptedProperty} with the given property details.
      */
     @JsonCreator
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("propertyStatus") String propertyStatus) {
         this.name = name;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.propertyStatus = propertyStatus;
     }
 
     /**
@@ -48,6 +51,7 @@ class JsonAdaptedProperty {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        propertyStatus = source.getPropertyStatusEnum().toString();
     }
 
     /**
@@ -78,7 +82,14 @@ class JsonAdaptedProperty {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(propertyTags);
-        return new Property(modelName, modelAddress, modelTags);
+        System.out.println(propertyStatus);
+
+        if (propertyStatus == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PropertyStatusEnum.class.getSimpleName()));
+        }
+
+        final PropertyStatusEnum modelPropertyStatus = PropertyStatusEnum.valueOf(propertyStatus);
+        return new Property(modelName, modelAddress, modelTags, modelPropertyStatus);
     }
 
 }

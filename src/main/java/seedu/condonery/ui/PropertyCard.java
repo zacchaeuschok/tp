@@ -5,14 +5,20 @@ import java.nio.file.Path;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 
 /**
  * An UI component that displays information of a {@code Property}.
@@ -44,6 +50,8 @@ public class PropertyCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private ImageView displayPicture;
+    @FXML
+    private Label propertyStatus;
 
     /**
      * Creates a {@code PropertyCode} with the given {@code Property} and index to display.
@@ -58,6 +66,8 @@ public class PropertyCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         displayPicture.setClip(new Circle(40, 40, 40));
+        propertyStatus.setText(property.getPropertyStatusEnum().toString());
+        propertyStatus.setBackground(new Background(new BackgroundFill(propertyStatusColor(property.getPropertyStatusEnum()), CornerRadii.EMPTY, Insets.EMPTY)));
         Path imagePath = property.getImagePath();
         if (imagePath != null) {
             File file = new File(property.getImagePath().toString());
@@ -68,6 +78,19 @@ public class PropertyCard extends UiPart<Region> {
                 Image img = new Image(this.getClass().getResourceAsStream(DEFAULT_PROPERTY_IMAGE));
                 displayPicture.setImage(img);
             }
+        }
+    }
+
+    Color propertyStatusColor(PropertyStatusEnum propertyStatusEnum) {
+        switch (propertyStatusEnum){
+            case SOLD:
+                return Color.RED;
+            case AVAILABLE:
+                return Color.rgb(0, 255,0);
+            case PENDING:
+                return Color.rgb(255,255,0);
+            default:
+                return Color.rgb(0,0,0);
         }
     }
 

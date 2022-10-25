@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_STATUS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG;
 import static seedu.condonery.testutil.Assert.assertThrows;
 import static seedu.condonery.testutil.TypicalProperties.PINNACLE;
 import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
@@ -47,7 +50,8 @@ public class PropertyDirectoryTest {
     public void resetData_withDuplicateProperties_throwsDuplicatePropertyException() {
         // Two persons with the same identity fields
         Property editedPinnacle = new PropertyBuilder(PINNACLE)
-                .withAddress(CLIENT_VALID_ADDRESS_BOB).withTags(CLIENT_VALID_TAG_HUSBAND)
+                .withAddress(PROPERTY_VALID_ADDRESS_SCOTTS).withTags(PROPERTY_VALID_TAG)
+                .withPropertyStatus(PROPERTY_VALID_STATUS)
             .build();
         List<Property> newProperties = Arrays.asList(PINNACLE, editedPinnacle);
         PropertyDirectoryStub newData = new PropertyDirectoryStub(newProperties);

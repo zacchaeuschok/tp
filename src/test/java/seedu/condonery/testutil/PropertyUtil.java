@@ -2,6 +2,7 @@ package seedu.condonery.testutil;
 
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -26,13 +27,15 @@ public class PropertyUtil {
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPropertyDetails(Property person) {
+    public static String getPropertyDetails(Property property) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + property.getName().fullName + " ");
+        sb.append(PREFIX_ADDRESS + property.getAddress().value + " ");
+        property.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        sb.append(PREFIX_PROPERTY_STATUS + property.getPropertyStatusEnum().toString() + " ");
+
         return sb.toString();
     }
 

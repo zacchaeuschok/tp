@@ -33,6 +33,7 @@ public class EditPropertyDescriptorBuilder {
         descriptor = new EditPropertyDescriptor();
         descriptor.setName(property.getName());
         descriptor.setAddress(property.getAddress());
+        descriptor.setPropertyStatusEnum(property.getPropertyStatusEnum());
         descriptor.setTags(property.getTags());
     }
 

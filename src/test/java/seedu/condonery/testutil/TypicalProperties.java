@@ -1,11 +1,23 @@
 package seedu.condonery.testutil;
 
-import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_FRIEND;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_STATUS_DESC_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_STATUS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG_SCOTTS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,11 +53,18 @@ public class TypicalProperties {
     public static final Property IDA = new PropertyBuilder().withName("Ida Mueller")
             .withAddress("chicago ave").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Property AMY = new PropertyBuilder().withName(CLIENT_VALID_NAME_AMY)
-            .withAddress(CLIENT_VALID_ADDRESS_AMY).withTags(CLIENT_VALID_TAG_FRIEND).build();
-    public static final Property BOB = new PropertyBuilder().withName(CLIENT_VALID_NAME_BOB)
-            .withAddress(CLIENT_VALID_ADDRESS_BOB).withTags(CLIENT_VALID_TAG_HUSBAND, CLIENT_VALID_TAG_FRIEND)
+    // Manually added - Property's details found in {@code CommandTestUtil}
+    public static final Property SCOTTS = new PropertyBuilder()
+            .withName(PROPERTY_VALID_NAME_SCOTTS)
+            .withAddress(PROPERTY_VALID_ADDRESS_SCOTTS)
+            .withTags(PROPERTY_VALID_TAG_SCOTTS)
+            .withPropertyStatus(PROPERTY_VALID_STATUS)
+            .build();
+    public static final Property WHISTLER = new PropertyBuilder()
+            .withName(PROPERTY_VALID_NAME_WHISTLER)
+            .withAddress(PROPERTY_VALID_ADDRESS_WHISTLER)
+            .withTags(PROPERTY_VALID_TAG)
+            .withPropertyStatus(PROPERTY_VALID_STATUS)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

@@ -12,6 +12,7 @@ import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -21,11 +22,11 @@ public class SampleDataUtil {
     public static Property[] getSampleProperties() {
         return new Property[] {
             new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
-                    getTagSet("High-End", "Available")),
+                    getTagSet("High-End", "Available"), PropertyStatusEnum.valueOf("AVAILABLE")),
             new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
-                    getTagSet("High-End", "Sold")),
+                    getTagSet("High-End", "Sold"), PropertyStatusEnum.valueOf("SOLD")),
             new Property(new Name("DLEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
-                    getTagSet("High-End", "Reserved"))
+                    getTagSet("High-End", "Reserved"), PropertyStatusEnum.valueOf("PENDING"))
         };
     }
 

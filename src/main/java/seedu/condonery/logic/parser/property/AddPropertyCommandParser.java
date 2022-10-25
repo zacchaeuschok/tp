@@ -4,6 +4,7 @@ import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -20,6 +21,7 @@ import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -34,7 +36,7 @@ public class AddPropertyCommandParser implements Parser<Command> {
      */
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_IMAGE_UPLOAD);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_IMAGE_UPLOAD, PREFIX_PROPERTY_STATUS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -44,8 +46,10 @@ public class AddPropertyCommandParser implements Parser<Command> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Property property = new Property(name, address, tagList);
+        PropertyStatusEnum propertyStatusEnum = argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent() ?
+                ParserUtil.parsePropertyStatus(argMultimap.getValue(PREFIX_PROPERTY_STATUS).get())
+                : PropertyStatusEnum.AVAILABLE;
+        Property property = new Property(name, address, tagList, propertyStatusEnum);
 
         if (argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()) {
             return new AddPropertyCommand(property, true);
