@@ -4,8 +4,8 @@ import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -50,8 +50,8 @@ public class AddPropertyCommandParser implements Parser<Command> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        PropertyStatusEnum propertyStatusEnum = argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent() ?
-                ParserUtil.parsePropertyStatus(argMultimap.getValue(PREFIX_PROPERTY_STATUS).get())
+        PropertyStatusEnum propertyStatusEnum = argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()
+                ? ParserUtil.parsePropertyStatus(argMultimap.getValue(PREFIX_PROPERTY_STATUS).get())
                 : PropertyStatusEnum.AVAILABLE;
 
         Property property = new Property(name, address, price, tagList, propertyStatusEnum);

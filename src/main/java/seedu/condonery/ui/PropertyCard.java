@@ -70,7 +70,9 @@ public class PropertyCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         displayPicture.setClip(new Circle(40, 40, 40));
         propertyStatus.setText(property.getPropertyStatusEnum().toString());
-        propertyStatus.setBackground(new Background(new BackgroundFill(propertyStatusColor(property.getPropertyStatusEnum()), CornerRadii.EMPTY, Insets.EMPTY)));
+        propertyStatus.setBackground(new Background(
+                new BackgroundFill(propertyStatusColor(property.getPropertyStatusEnum()),
+                        CornerRadii.EMPTY, Insets.EMPTY)));
         Path imagePath = property.getImagePath();
         if (imagePath != null) {
             File file = new File(property.getImagePath().toString());
@@ -85,15 +87,15 @@ public class PropertyCard extends UiPart<Region> {
     }
 
     Color propertyStatusColor(PropertyStatusEnum propertyStatusEnum) {
-        switch (propertyStatusEnum){
-            case SOLD:
-                return Color.RED;
-            case AVAILABLE:
-                return Color.rgb(0, 255,0);
-            case PENDING:
-                return Color.rgb(255,255,0);
-            default:
-                return Color.rgb(0,0,0);
+        switch (propertyStatusEnum) {
+        case SOLD:
+            return Color.RED;
+        case AVAILABLE:
+            return Color.rgb(0, 255, 0);
+        case PENDING:
+            return Color.rgb(255, 255, 0);
+        default:
+            return Color.rgb(0, 0, 0);
         }
     }
 

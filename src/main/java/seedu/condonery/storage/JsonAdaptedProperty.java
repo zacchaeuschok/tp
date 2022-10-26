@@ -36,7 +36,8 @@ class JsonAdaptedProperty {
     @JsonCreator
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("address") String address,
            @JsonProperty("price") String price,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("propertyStatus") String propertyStatus) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+           @JsonProperty("propertyStatus") String propertyStatus) {
         this.name = name;
         this.address = address;
         this.price = price;
@@ -98,7 +99,8 @@ class JsonAdaptedProperty {
         System.out.println(propertyStatus);
 
         if (propertyStatus == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PropertyStatusEnum.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PropertyStatusEnum.class.getSimpleName()));
         }
 
         final PropertyStatusEnum modelPropertyStatus = PropertyStatusEnum.valueOf(propertyStatus);

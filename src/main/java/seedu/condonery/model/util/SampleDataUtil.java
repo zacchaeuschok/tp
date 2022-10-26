@@ -22,15 +22,15 @@ import seedu.condonery.model.tag.Tag;
 public class SampleDataUtil {
     public static Property[] getSampleProperties() {
         return new Property[] {
-            new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301")
-                    , new Price("1000000"),
+            new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
+                    new Price("1000000"),
                     getTagSet("High-End", "Available"), PropertyStatusEnum.valueOf("AVAILABLE")),
-            new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684")
-                    , new Price("1000000"),
+            new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
+                    new Price("1000000"),
                     getTagSet("High-End", "Sold"), PropertyStatusEnum.valueOf("SOLD")),
             new Property(new Name("DLEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
                     new Price("1000000"),
-                    getTagSet("High-End", "Reserved"),  PropertyStatusEnum.valueOf("PENDING"))
+                    getTagSet("High-End", "Reserved"), PropertyStatusEnum.valueOf("PENDING"))
         };
     }
 
