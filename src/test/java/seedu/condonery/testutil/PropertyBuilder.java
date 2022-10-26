@@ -78,8 +78,9 @@ public class PropertyBuilder {
      */
     public PropertyBuilder withPropertyStatus(String propertyStatus) {
         this.propertyStatusEnum = PropertyStatusEnum.valueOf(propertyStatus);
+        return this;
     }
-    
+    /**
      * Sets the {@code Price} of the {@code Property} that we are building.
      */
     public PropertyBuilder withPrice(String price) {

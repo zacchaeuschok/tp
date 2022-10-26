@@ -15,6 +15,8 @@ import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDR
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_PRICE_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_PRICE_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_STATUS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG_SCOTTS;
@@ -69,12 +71,14 @@ public class TypicalProperties {
             .withName(PROPERTY_VALID_NAME_SCOTTS)
             .withAddress(PROPERTY_VALID_ADDRESS_SCOTTS)
             .withTags(PROPERTY_VALID_TAG_SCOTTS)
+            .withPrice(PROPERTY_VALID_PRICE_SCOTTS)
             .withPropertyStatus(PROPERTY_VALID_STATUS)
             .build();
     public static final Property WHISTLER = new PropertyBuilder()
             .withName(PROPERTY_VALID_NAME_WHISTLER)
             .withAddress(PROPERTY_VALID_ADDRESS_WHISTLER)
             .withTags(PROPERTY_VALID_TAG)
+            .withPrice(PROPERTY_VALID_PRICE_WHISTLER)
             .withPropertyStatus(PROPERTY_VALID_STATUS)
             .build();
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

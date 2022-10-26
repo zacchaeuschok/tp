@@ -32,7 +32,7 @@ public class Property {
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name, Address address, Price price, Set<Tag> tags) {
+    public Property(Name name, Address address, Price price, Set<Tag> tags, PropertyStatusEnum propertyStatusEnum) {
         requireAllNonNull(name, address, price, tags, propertyStatusEnum);
         this.name = name;
         this.address = address;

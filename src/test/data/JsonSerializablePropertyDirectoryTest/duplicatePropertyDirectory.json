@@ -13,7 +13,7 @@
     {
       "name": "Alice Pauline",
       "address": "4th street",
-      "propertyStatus": "AVAILABLE"
+      "propertyStatus": "AVAILABLE",
       "price": "100000"
     }
   ]

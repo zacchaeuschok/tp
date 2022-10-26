@@ -24,7 +24,7 @@
       "name": "Carl Kurz",
       "address": "wall street",
       "tagged": [],
-      "propertyStatus": "SOLD"
+      "propertyStatus": "SOLD",
       "price": "1,000,000",
       "tagged": []
     },
@@ -42,7 +42,7 @@
       "name": "Elle Meyer",
       "address": "michegan ave",
       "tagged": [],
-      "propertyStatus": "SOLD"
+      "propertyStatus": "SOLD",
       "price": "1,000,000",
       "tagged": []
     },
@@ -50,7 +50,7 @@
       "name": "Fiona Kunz",
       "address": "little tokyo",
       "tagged": [],
-      "propertyStatus": "SOLD"
+      "propertyStatus": "SOLD",
       "price": "1,000,000",
       "tagged": []
     },
@@ -58,7 +58,7 @@
       "name": "George Best",
       "address": "4th street",
       "tagged": [],
-      "propertyStatus": "SOLD"
+      "propertyStatus": "SOLD",
       "price": "1,000,000",
       "tagged": []
     }

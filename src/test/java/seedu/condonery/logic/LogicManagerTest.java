@@ -5,6 +5,7 @@ import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_PROPERTY_DIS
 import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_PRICE_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_STATUS_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_SCOTTS;
 import static seedu.condonery.testutil.Assert.assertThrows;
@@ -90,6 +91,7 @@ public class LogicManagerTest {
                 + PROPERTY_NAME_DESC_SCOTTS
                 + PROPERTY_ADDRESS_DESC_SCOTTS
                 + PROPERTY_STATUS_DESC_SCOTTS
+                + PROPERTY_PRICE_DESC_SCOTTS
                 + PROPERTY_TAGS_DESC_SCOTTS;
         Property expectedProperty = new PropertyBuilder(SCOTTS).build();
         ModelManager expectedModel = new ModelManager();

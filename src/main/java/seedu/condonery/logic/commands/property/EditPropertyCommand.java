@@ -102,7 +102,7 @@ public class EditPropertyCommand extends Command {
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
         PropertyStatusEnum propertyStatusEnum = editPropertyDescriptor
                 .getPropertyStatusEnum().orElse(propertyToEdit.getPropertyStatusEnum());
-        return new Property(updatedName, updatedAddress, updatedTags, propertyStatusEnum);
+        return new Property(updatedName, updatedAddress, updatedPrice, updatedTags, propertyStatusEnum);
     }
 
     @Override

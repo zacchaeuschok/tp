@@ -18,6 +18,9 @@ import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DE
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_PRICE_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_PRICE_DESC_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_STATUS_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_SCOTTS;
@@ -52,29 +55,31 @@ public class AddPropertyCommandParserTest {
         Property expectedProperty = new PropertyBuilder(WHISTLER).withTags(PROPERTY_VALID_TAG).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROPERTY_NAME_DESC_WHISTLER
-            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER, new AddPropertyCommand(expectedProperty));
+        assertParseSuccess(parser,  PREAMBLE_WHITESPACE + PROPERTY_NAME_DESC_WHISTLER
+            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER + PROPERTY_PRICE_DESC_WHISTLER
+                , new AddPropertyCommand(expectedProperty));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_NAME_DESC_WHISTLER
-            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER, new AddPropertyCommand(expectedProperty));
+            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER+ PROPERTY_PRICE_DESC_WHISTLER, new AddPropertyCommand(expectedProperty));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, PROPERTY_NAME_DESC_WHISTLER + PROPERTY_ADDRESS_DESC_SCOTTS
-            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER, new AddPropertyCommand(expectedProperty));
+            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER+ PROPERTY_PRICE_DESC_WHISTLER, new AddPropertyCommand(expectedProperty));
 
         // multiple tags - all accepted
         Property expectedPersonMultipleTags =
                 new PropertyBuilder(SCOTTS).withTags(PROPERTY_VALID_TAG_SCOTTS, PROPERTY_VALID_TAG).build();
         assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_ADDRESS_DESC_SCOTTS
-            + PROPERTY_TAGS_DESC_SCOTTS + PROPERTY_TAGS_DESC_WHISTLER, new AddPropertyCommand(expectedPersonMultipleTags));
+                + PROPERTY_TAGS_DESC_SCOTTS + PROPERTY_TAGS_DESC_WHISTLER + PROPERTY_PRICE_DESC_SCOTTS, new AddPropertyCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Property expectedProperty = new PropertyBuilder(SCOTTS).withTags().build();
-        assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_ADDRESS_DESC_SCOTTS,
+        assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_ADDRESS_DESC_SCOTTS
+                + PROPERTY_PRICE_DESC_SCOTTS,
         new AddPropertyCommand(expectedProperty));
     }
 

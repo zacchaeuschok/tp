@@ -2,6 +2,7 @@ package seedu.condonery.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import jdk.swing.interop.SwingInterOpUtils;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 
@@ -16,6 +17,7 @@ public class CommandParserTestUtil {
      */
     public static void assertParseSuccess(Parser<? extends Command> parser, String userInput,
                                           Command expectedCommand) {
+        System.out.println(userInput);
         try {
             Command command = parser.parse(userInput);
             System.out.println(command);
