@@ -1,16 +1,5 @@
 package seedu.condonery.testutil;
 
-import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_FRIEND;
-import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_SCOTTS;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_WHISTLER;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_SCOTTS;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_WHISTLER;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_STATUS_DESC_WHISTLER;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_SCOTTS;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_SCOTTS;
@@ -20,8 +9,6 @@ import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_PRIC
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_STATUS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG_SCOTTS;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;

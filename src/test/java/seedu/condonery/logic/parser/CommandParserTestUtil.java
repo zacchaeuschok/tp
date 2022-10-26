@@ -2,7 +2,6 @@ package seedu.condonery.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import jdk.swing.interop.SwingInterOpUtils;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 

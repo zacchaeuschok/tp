@@ -116,7 +116,8 @@ public class EditPropertyCommandTest {
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(firstProperty).build();
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(INDEX_SECOND, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editPropertyCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
+        CommandTestUtil.assertCommandFailure(editPropertyCommand, model,
+                EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
     @Test
@@ -129,7 +130,8 @@ public class EditPropertyCommandTest {
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(INDEX_FIRST,
             new EditPropertyDescriptorBuilder(propertyInList).build());
 
-        CommandTestUtil.assertCommandFailure(editPropertyCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
+        CommandTestUtil.assertCommandFailure(editPropertyCommand, model,
+                EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
     @Test
@@ -139,7 +141,8 @@ public class EditPropertyCommandTest {
                 .withName(CommandTestUtil.CLIENT_VALID_NAME_BOB).build();
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editPropertyCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editPropertyCommand, model,
+                Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
     }
 
     /**
@@ -151,12 +154,14 @@ public class EditPropertyCommandTest {
         CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getPropertyDirectory().getPropertyList().size()  + 1);
+        assertTrue(outOfBoundIndex.getZeroBased()
+                < model.getPropertyDirectory().getPropertyList().size() + 1);
 
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(outOfBoundIndex,
             new EditPropertyDescriptorBuilder().withName(CommandTestUtil.CLIENT_VALID_NAME_BOB).build());
 
-        CommandTestUtil.assertCommandFailure(editPropertyCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editPropertyCommand, model,
+                Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
     }
 
     @Test

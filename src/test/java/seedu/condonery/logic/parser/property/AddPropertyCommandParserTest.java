@@ -1,36 +1,27 @@
 package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_FRIEND;
-import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.condonery.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.condonery.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_PRICE_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_PRICE_DESC_WHISTLER;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_STATUS_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_WHISTLER;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_SCOTTS;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_WHISTLER;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_SCOTTS;
-import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG_SCOTTS;
-import static seedu.condonery.logic.commands.CommandTestUtil.PRICE_DESC_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
@@ -40,6 +31,7 @@ import static seedu.condonery.testutil.TypicalProperties.SCOTTS;
 import static seedu.condonery.testutil.TypicalProperties.WHISTLER;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
@@ -55,23 +47,26 @@ public class AddPropertyCommandParserTest {
         Property expectedProperty = new PropertyBuilder(WHISTLER).withTags(PROPERTY_VALID_TAG).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser,  PREAMBLE_WHITESPACE + PROPERTY_NAME_DESC_WHISTLER
-            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER + PROPERTY_PRICE_DESC_WHISTLER
-                , new AddPropertyCommand(expectedProperty));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROPERTY_NAME_DESC_WHISTLER
+            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER + PROPERTY_PRICE_DESC_WHISTLER,
+                new AddPropertyCommand(expectedProperty));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_NAME_DESC_WHISTLER
-            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER+ PROPERTY_PRICE_DESC_WHISTLER, new AddPropertyCommand(expectedProperty));
+            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER + PROPERTY_PRICE_DESC_WHISTLER,
+                new AddPropertyCommand(expectedProperty));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, PROPERTY_NAME_DESC_WHISTLER + PROPERTY_ADDRESS_DESC_SCOTTS
-            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER+ PROPERTY_PRICE_DESC_WHISTLER, new AddPropertyCommand(expectedProperty));
+            + PROPERTY_ADDRESS_DESC_WHISTLER + PROPERTY_TAGS_DESC_WHISTLER + PROPERTY_PRICE_DESC_WHISTLER,
+                new AddPropertyCommand(expectedProperty));
 
         // multiple tags - all accepted
         Property expectedPersonMultipleTags =
                 new PropertyBuilder(SCOTTS).withTags(PROPERTY_VALID_TAG_SCOTTS, PROPERTY_VALID_TAG).build();
         assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_ADDRESS_DESC_SCOTTS
-                + PROPERTY_TAGS_DESC_SCOTTS + PROPERTY_TAGS_DESC_WHISTLER + PROPERTY_PRICE_DESC_SCOTTS, new AddPropertyCommand(expectedPersonMultipleTags));
+                + PROPERTY_TAGS_DESC_SCOTTS + PROPERTY_TAGS_DESC_WHISTLER + PROPERTY_PRICE_DESC_SCOTTS,
+                new AddPropertyCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -80,7 +75,7 @@ public class AddPropertyCommandParserTest {
         Property expectedProperty = new PropertyBuilder(SCOTTS).withTags().build();
         assertParseSuccess(parser, PROPERTY_NAME_DESC_SCOTTS + PROPERTY_ADDRESS_DESC_SCOTTS
                 + PROPERTY_PRICE_DESC_SCOTTS,
-        new AddPropertyCommand(expectedProperty));
+            new AddPropertyCommand(expectedProperty));
     }
 
     @Test
