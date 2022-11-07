@@ -527,18 +527,22 @@ Use case ends.
 **Extensions**
 
 1a. The given input is missing a required argument
+
 1a1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 1.
 
 1b. The given input is missing a required prefix
+
 1b1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 1.
 
 1c. The given Property Name already exists in the Property Directory
+
 1c1. Condonery shows an error message stating that the property already exists in the Property Directory.
 Use case resumes at step 1.
 
 1d. The given Property Price parameter exceeds the MAX_INT
+
 1d1. Condonery shows an error message stating that the price is invalid.
 Use case resumes at step 1.
 
@@ -557,14 +561,17 @@ Use case ends.
 **Extensions**
 
 3a. The input did not specify a index
+
 3a1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 2.
 
 3b. The input's specified index does not exist in the Property Directory
+
 3b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 2.
 
 3c. The input's specified index is in the wrong format.
+
 3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 2.
 
